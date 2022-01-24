@@ -55,7 +55,7 @@ def extract_files(fname, dest_dir, src_dir=''):
     """
     Extract filename in analyzeDir and put output into tempDir
     """
-    z = zipfile.ZipFile(src_dir + fname,mode='r')
+    z = zipfile.ZipFile(os.path.join(src_dir, fname),mode='r')
     z.extractall(path=dest_dir)
 
 

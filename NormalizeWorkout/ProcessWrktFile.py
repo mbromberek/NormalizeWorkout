@@ -25,6 +25,7 @@ import util.timeConv as tc
 import parse.rungapParse as rgNorm
 import parse.fitParse as fitParse
 import parse.rungapMetadata as rungapMeta
+import WrktSplits
 
 # tempDir = '/tmp/' #default to /tmp
 logging.config.fileConfig('../logging.conf')
@@ -147,7 +148,7 @@ def main(argv):
     '''
     splitDict = {}
     for split in splitOptions:
-        splitDict[split] = rgNorm.group_actv(actv_df, split)
+        splitDict[split] = WrktSplits.group_actv(actv_df, split)
 
     '''
     Export data frames to files for review

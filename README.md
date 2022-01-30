@@ -7,7 +7,7 @@ All rights reserved.
 
 Take workout data from RunGap JSON file or .FIT file and create a DataFrame of the data. Can then save the DataFrame as a .pickle or .CSV file.
 
-ProcessWrktFile.py can be used for testing and saving a file. 
+ProcessWrktFile.py can be used for testing and saving a file.
 
 ### Setup Environment
 ```
@@ -16,6 +16,7 @@ source $HOME/.virtualenvironments/TestEnv/bin/activate
 
 pip install wheel
 pip install .
+pip install git+https://github.com/mbromberek/NormalizeWorkout.git
 ```
 
 ### Testing

@@ -20,7 +20,8 @@ import numpy as np
 import pandas as pd
 
 # custom classes
-import util.timeConv as tc
+# import util.timeConv as tc
+import NormalizeWorkout.util.timeConv as tc
 
 def group_actv(df, group_by_field):
     '''

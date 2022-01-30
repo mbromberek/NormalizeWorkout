@@ -97,6 +97,10 @@ def normalize_activity(dataRaw):
     df_events = pd.DataFrame(eventTyps)
     df_activity = pd.DataFrame(activityPts)
 
+    # If there is no metadata in events then cannot do anything with events and will just return activity
+    if 'metadata' not in df_events:
+        return df_activity
+
     # fao.save_df(df_activity, '/Users/mikeyb/Library/Mobile Documents/com~apple~CloudDocs/_Runs/analyze/results','df_activity', frmt=['csv','pickle'])
     # fao.save_df(df_events, '/Users/mikeyb/Library/Mobile Documents/com~apple~CloudDocs/_Runs/analyze/results','df_events', frmt=['csv','pickle'])
 

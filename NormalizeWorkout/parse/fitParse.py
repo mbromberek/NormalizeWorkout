@@ -179,6 +179,8 @@ def normalize_laps_points(lapsDf, pointsDf):
     point_events_df['delta_dist_mi'] = point_events_df['dist_mi']-point_events_df['dist_mi'].shift(+1)
     point_events_df['delta_dist_km'] = point_events_df['dist_km']-point_events_df['dist_km'].shift(+1)
     point_events_df['delta_ele_ft'] = point_events_df['altitude_ft'] -point_events_df['altitude_ft'].shift(+1)
+    point_events_df['ele_up'] = point_events_df[point_events_df['delta_ele_ft']>0]['delta_ele_ft']
+    point_events_df['ele_down'] = point_events_df[point_events_df['delta_ele_ft']<0]['delta_ele_ft']
 
     point_events_df['delta_timestamp'] = point_events_df['timestamp']-point_events_df['timestamp'].shift(+1)
 

@@ -41,6 +41,8 @@ def group_actv(df, group_by_field):
              , ele_down = ('ele_down','sum')
              , sum_ele = ('delta_ele_ft','sum')
              , max_dist = ('dist_mi','max')
+             , lat = ('latitude', 'last')
+             , lon = ('longitude', 'last')
         )
         .reset_index()
     )
@@ -84,4 +86,5 @@ def group_actv(df, group_by_field):
         , 'avg_hr' \
         , 'ele_up', 'ele_down', 'sum_ele' \
         , 'min_time','max_time','min_dist', 'max_dist' \
+        , 'lat', 'lon' \
         ]]

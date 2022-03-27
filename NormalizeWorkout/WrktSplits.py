@@ -82,7 +82,7 @@ def group_actv(df, group_by_field):
     grouped_df['sum_ele'] = grouped_df['sum_ele'].round(2)
 
     return grouped_df[[group_by_field,'dur_sec', 'dist_mi' \
-        , 'pace',  \
+        , 'pace'  \
         , 'avg_hr' \
         , 'ele_up', 'ele_down', 'sum_ele' \
         , 'min_time','max_time','min_dist', 'max_dist' \

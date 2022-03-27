@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 
 # custom classes
-import util.timeConv as tc # Need to use when running ProcessWrktFile.py
+# import util.timeConv as tc # Need to use when running ProcessWrktFile.py
 # import NormalizeWorkout.util.timeConv as tc
 
 def group_actv(df, group_by_field):
@@ -72,8 +72,8 @@ def group_actv(df, group_by_field):
     grouped_df['pace'] = grouped_df['dur_sec'] / grouped_df['dist_mi']
     grouped_df['pace'] = grouped_df['pace'].replace(np.inf, 0).fillna(0)
 
-    grouped_df['dur_str'] = tc.seconds_to_time_str(grouped_df, 'dur_sec', 'hms')
-    grouped_df['pace_str'] = tc.seconds_to_time_str(grouped_df, 'pace', 'hms')
+    # grouped_df['dur_str'] = tc.seconds_to_time_str(grouped_df, 'dur_sec', 'hms')
+    # grouped_df['pace_str'] = tc.seconds_to_time_str(grouped_df, 'pace', 'hms')
 
     grouped_df['dist_mi'] = grouped_df['dist_mi'].round(2).fillna(0)
     grouped_df['avg_hr'] = grouped_df['avg_hr'].round(2)
@@ -81,8 +81,8 @@ def group_actv(df, group_by_field):
     grouped_df['ele_down'] = grouped_df['ele_down'].round(2)
     grouped_df['sum_ele'] = grouped_df['sum_ele'].round(2)
 
-    return grouped_df[[group_by_field,'dur_sec', 'dur_str', 'dist_mi' \
-        , 'pace', 'pace_str' \
+    return grouped_df[[group_by_field,'dur_sec', 'dist_mi' \
+        , 'pace',  \
         , 'avg_hr' \
         , 'ele_up', 'ele_down', 'sum_ele' \
         , 'min_time','max_time','min_dist', 'max_dist' \

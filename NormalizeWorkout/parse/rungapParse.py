@@ -367,12 +367,12 @@ def rm_unneeded_cols(actv_orig):
     actv_df = actv_orig.copy()
 
     # Drop unneeded fields
-    actv_df.drop(['kcal', 'va','ha','lon','lat',
+    actv_df.drop(['kcal', 'va','ha',
                   'pause_resume','run_time_sec','run_time_min',
                   'run_time_min_resume', 'avg_pace', 'time'],
                  axis=1, inplace=True)
     # Rename colums
-    actv_df.rename(columns={'avg_pace_resume':'avg_pace'                        , 'run_time_sec_resume':'dur_sec'                        , 'pause_resume_section':'resume'                       }, inplace=True)
+    actv_df.rename(columns={'avg_pace_resume':'avg_pace'                        , 'run_time_sec_resume':'dur_sec'                        , 'pause_resume_section':'resume', 'lon':'longitude', 'lat':'latitude'}, inplace=True)
 
     # Store time values in hh mm ss format
     # actv_df['dur_str'] = tc.seconds_to_time_str(actv_df, 'dur_sec', 'hms')
@@ -389,7 +389,7 @@ def rm_unneeded_cols(actv_orig):
     actv_df = actv_df[['date_time', 'dist_mi', 'dur_sec' #, 'dur_str'
         , 'avg_pace', 'mile','kilometer','lap','resume'
         , 'hr', 'ele_ft', 'delta_ele_ft'
-        , 'dist_meters'
+        , 'dist_meters', 'longitude', 'latitude'
     ]]
     #, 'runcad'
     return actv_df

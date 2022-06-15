@@ -324,7 +324,6 @@ def add_splits(actv_orig, evnt_orig):
     activity_resume['run_time_min_resume'] = activity_resume['run_time_sec_resume'] / 60
     activity_resume['avg_pace_resume'] = activity_resume['run_time_min_resume'] / activity_resume['dist_mi']
 
-
     return activity_resume
 
 

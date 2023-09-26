@@ -22,7 +22,8 @@ import pandas as pd
 # custom classes
 import dao.files as fao
 import util.timeConv as tc
-import parse.rungapParse as rgNorm
+# import parse.rungapParse as rgNorm
+import parse.hkParse as hkNorm
 import parse.fitParse as fitParse
 import parse.rungapMetadata as rungapMeta
 import WrktSplits
@@ -125,7 +126,7 @@ def main(argv):
     elif fao.file_with_ext(tempDir, ext='rungap.json') != '':
         logger.info('Rungap JSON file')
         data = fao.get_workout_data(tempDir)
-        actv_df = rgNorm.normalize_activity(data)
+        actv_df, pause_times_df = hkNorm.normalize_activity(data)
     else:
         logger.info('No file to process')
         sys.exit(-1)

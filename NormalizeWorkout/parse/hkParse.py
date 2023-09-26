@@ -19,7 +19,7 @@ METERS_IN_KILOMETERS = 1000
 METERS_TO_FEET = 3.28084
 
 '''
-
+Normalize Healthkit workout file
 '''
 def normalize_activity(data):
     activityPts = data['laps'][0]['points']
@@ -50,10 +50,10 @@ def normalize_activity(data):
     return activity, pause_times
     
     
+'''
+- Forward fill distance and elevation
+'''
 def cleanup_values(activity_df):
-    '''
-    - Forward fill distance and elevation
-    '''
     activity = activity_df.copy()
     activity['dist'].ffill(inplace=True)
     activity['ele'].ffill(inplace=True)
@@ -104,6 +104,9 @@ def mark_pause_records(df_activity, event_pause_times):
     
     return activity
 
+'''
+Mark resume splits on activity
+'''
 def mark_resumes(activity_df, events_df):
     activity = activity_df.copy()
     '''
@@ -123,10 +126,10 @@ def mark_resumes(activity_df, events_df):
     
     return activity
 
+'''    
+Mark the marker/laps on activity
+'''
 def mark_laps(activity_df, events_df):
-    '''    
-    Merge marker/lap into activity
-    '''
     actvity = activity_df.copy()
     
     # Get start time as int and date/time
@@ -153,7 +156,9 @@ def mark_laps(activity_df, events_df):
     
     return actvity
     
-    
+'''
+Mark distance splits for mile and kilometer on activity
+'''
 def mark_distances(activity_df):
     
     activity = activity_df.copy()
@@ -189,7 +194,9 @@ def mark_distances(activity_df):
     
     return activity
     
-    
+'''
+Calculate Elevation Changes up and down based on activities ele column
+'''
 def calc_elevation_changes(activity_df):
     activity = activity_df.copy()
     
@@ -205,7 +212,9 @@ def calc_elevation_changes(activity_df):
     
     return activity
     
-    
+'''
+Remove records that were during a pause
+'''
 def drop_pause_records(activity_df):
     '''
     Drop records that are part of pause, then remove pause column
@@ -217,20 +226,22 @@ def drop_pause_records(activity_df):
     activity.drop(columns=['pause'], inplace=True)
     
     return activity
-    
+
+'''
+Get duration into activity for each record
+'''
 def calc_record_duration(activity_df):
-    '''
-    Get duration of each record
-    '''
     activity = activity_df.copy()
     
     activity.reset_index(drop=True, inplace=True)
     activity['dur_sec'] = activity.index.values
     
     return activity
-    
+
+'''
+Normalize field names that are currently not using standard names
+'''
 def normalize_field_names(activity_df):
-    # # Normalize field names
     activity = activity_df.copy()
     activity.rename(columns={'lat':'latitude','lon':'longitude','dttm':'timestamp'},inplace=True)
     return activity

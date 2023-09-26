@@ -19,7 +19,7 @@ pip install .
 pip install git+https://github.com/mbromberek/NormalizeWorkout.git
 ```
 
-### Testing
+# Testing
 ```
 import NormalizeWorkout.parse.fitParse as fitParse
 dir='/Users/mikeyb/Downloads/2022-01-22_07-04-48_co_441002095250800640_mod'
@@ -29,3 +29,11 @@ actv_df = fitParse.normalize_laps_points(lapsDf, pointsDf)
 dir='/Users/mikeyb/Library/Mobile Documents/iCloud~com~rungap~RunGap/Documents/Export_test/2019-06-15_07-05-44_hk_1560600344'
 lapsDf, pointsDf = fitParse.get_dataframes(dir + '/' + '2019-06-15_07-05-44_hk_1560600344.rungap.json')
 ```
+## Test run job
+'''
+Process file from -i and output to -o
+'''
+```
+python ProcessWrktFile.py -i /Users/mike/Library/Mobile\ Documents/iCloud\~com\~rungap\~RunGap/Documents/Export_test/2023-09-24_11-14-10_hk_1695572050.zip -o $HOME/Downloads/
+```
+

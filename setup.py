@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(name='NormalizeWorkout',
-      version='1.2.2',
+      version='1.3.0',
       description='Normalize Workout to a Pandas dataframe from .fit or rungap.json file',
       # url='http://github.com/storborg/funniest',
       author='Mike Bromberek',

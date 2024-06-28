@@ -184,8 +184,9 @@ def normalize_laps_points(lapsDf, pointsDf):
 
     point_events_df['delta_timestamp'] = point_events_df['timestamp']-point_events_df['timestamp'].shift(+1)
 
-    point_events_df['delta_dist_mi'].fillna(0, inplace=True)
-    point_events_df['delta_dist_km'].fillna(0, inplace=True)
+    # point_events_df['delta_dist_mi'].fillna(0, inplace=True)
+    point_events_df.fillna({'delta_dist_mi': 0, 'delta_dist_km':0}, inplace=True)
+    # point_events_df['delta_dist_km'].fillna(0, inplace=True)
 
     # Get mile number
     # MAX_MILE_NBR = 500

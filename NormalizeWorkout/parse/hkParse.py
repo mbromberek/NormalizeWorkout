@@ -56,8 +56,10 @@ def normalize_activity(data):
 '''
 def cleanup_values(activity_df):
     activity = activity_df.copy()
-    activity['dist'].ffill(inplace=True)
-    activity['ele'].ffill(inplace=True)
+    # activity['dist'].ffill(inplace=True)
+    activity['dist'] = activity['dist'].ffill()
+    # activity['ele'].ffill(inplace=True)
+    activity['ele'] = activity['ele'].ffill()
     
     return activity
     
@@ -171,14 +173,16 @@ def mark_distances(activity_df):
     
     activity = activity_df.copy()
     activity.rename(columns={'dist':'dist_m'},inplace=True)
-    activity['dist_m'].fillna(0, inplace=True)
+    # activity['dist_m'].fillna(0, inplace=True)
+    activity.fillna({'dist_m': 0}, inplace=True)
     activity['dist_km'] = activity['dist_m'] / METERS_IN_KILOMETERS
     activity['dist_mi'] = activity['dist_km'] * MILES_IN_KILOMETERS
     
     activity['delta_dist_mi'] = activity['dist_mi']-activity['dist_mi'].shift(+1)
     activity['delta_dist_km'] = activity['dist_km']-activity['dist_km'].shift(+1)
-    activity['delta_dist_mi'].fillna(0, inplace=True)
-    activity['delta_dist_km'].fillna(0, inplace=True)
+    # activity['delta_dist_mi'].fillna(0, inplace=True)
+    # activity['delta_dist_km'].fillna(0, inplace=True)
+    activity.fillna({'delta_dist_mi': 0, 'delta_dist_km': 0}, inplace=True)
     
     # Get mile number
     i = 1
@@ -209,11 +213,13 @@ def calc_elevation_changes(activity_df):
     activity = activity_df.copy()
     
     activity.rename(columns={'ele':'altitude_m'},inplace=True)
-    activity['altitude_m'].fillna(0, inplace=True)
+    # activity['altitude_m'].fillna(0, inplace=True)
+    activity.fillna({'altitude_m': 0}, inplace=True)
     activity['altitude_ft'] = activity['altitude_m'] * METERS_TO_FEET
     
     activity['delta_ele_ft'] = activity['altitude_ft']-activity['altitude_ft'].shift(+1)
-    activity['delta_ele_ft'].fillna(0, inplace=True)
+    # activity['delta_ele_ft'].fillna(0, inplace=True)
+    activity.fillna({'delta_ele_ft': 0}, inplace=True)
     
     activity['ele_up'] = activity[activity['delta_ele_ft']>0]['delta_ele_ft']
     activity['ele_down'] = activity[activity['delta_ele_ft']<0]['delta_ele_ft']

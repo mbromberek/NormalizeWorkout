@@ -35,5 +35,8 @@ Process file from -i and output to -o
 '''
 ```
 python ProcessWrktFile.py -i /Users/mike/Library/Mobile\ Documents/iCloud\~com\~rungap\~RunGap/Documents/Export_test/2023-09-24_11-14-10_hk_1695572050.zip -o $HOME/Downloads/
+
+python ProcessWrktFile.py -i /Users/mike/Library/Mobile\ Documents/iCloud\~com\~rungap\~RunGap/Documents/Export_test/2024-06-25_04-17-43_hk_1719307063.zip 
+
 ```
 

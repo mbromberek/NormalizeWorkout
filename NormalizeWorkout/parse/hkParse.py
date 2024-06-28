@@ -36,6 +36,7 @@ def normalize_activity(data):
     activity = cleanup_values(df_activity)
     
     pause_times = get_pause_times(df_events)
+    
     activity = mark_pause_records(activity, pause_times)
     activity = mark_resumes(activity, df_events)
     
@@ -100,7 +101,14 @@ def mark_pause_records(df_activity, event_pause_times):
     for i in range(len(pause_range)):
         condition = activity['time'].ge(pause_range[i][0]) & activity['time'].le(pause_range[i][1])
         activity_pause_conditions.append(condition)
-    activity['pause'] = np.select(activity_pause_conditions, pause_choices)
+
+    if len(pause_choices) == 0:
+        # If there are no pauses in workout then have empty conditions list of true with choice of 0 for all records
+        activity['pause'] = np.select([True], [0], default=0)
+    else:
+        activity['pause'] = np.select(activity_pause_conditions, pause_choices, default=0)
+    
+    
     
     return activity
 
